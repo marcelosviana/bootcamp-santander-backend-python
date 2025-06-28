@@ -1,3 +1,5 @@
+from datetime import datetime
+
 menu = """
 
 [d] Depositar
@@ -12,9 +14,9 @@ limite = 500
 extrato = ""
 numero_saques = 0
 LIMITE_SAQUES = 3
+data_ultimo_saque = None
 
 while True:
-
     opcao = input(menu)
 
     if opcao == "d":
@@ -23,35 +25,34 @@ while True:
         if valor > 0:
             saldo += valor
             extrato += f"Depósito: R$ {valor:.2f}\n"
-
         else:
-            print("Operação falhou! O valor informado é inválido.")
+            print("Informe um valor válido.")
 
     elif opcao == "s":
+        # Verifica se é um novo dia e zera o contador
+        hoje = datetime.now().date()
+        if data_ultimo_saque is None or data_ultimo_saque != hoje:
+            numero_saques = 0
+            data_ultimo_saque = hoje
+
         valor = float(input("Informe o valor do saque: "))
 
         excedeu_saldo = valor > saldo
-
         excedeu_limite = valor > limite
-
         excedeu_saques = numero_saques >= LIMITE_SAQUES
 
         if excedeu_saldo:
-            print("Operação falhou! Você não tem saldo suficiente.")
-
+            print('''  ERRO - 51 \nSaldo insuficiente.''')
         elif excedeu_limite:
-            print("Operação falhou! O valor do saque excede o limite.")
-
+            print('''  ERRO - 51 \nLimite insuficiente.''')
         elif excedeu_saques:
-            print("Operação falhou! Número máximo de saques excedido.")
-
+            print('''  ERRO - 65 \nNúmero máximo de saques diários excedido.''')
         elif valor > 0:
             saldo -= valor
             extrato += f"Saque: R$ {valor:.2f}\n"
             numero_saques += 1
-
         else:
-            print("Operação falhou! O valor informado é inválido.")
+            print("Informe um valor válido.")
 
     elif opcao == "e":
         print("\n================ EXTRATO ================")
