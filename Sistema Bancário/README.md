@@ -13,7 +13,6 @@ Este projeto é um sistema bancário simples desenvolvido em Python, como exerc�
 - ✅ **Geração de extrato com histórico de transações**
 - ✅ **Verificação de saldo e limites**
 - ✅ **Menu interativo no terminal**
-# 💰 Sistema Bancário em Python
 
 ---
 
@@ -36,6 +35,8 @@ Este projeto é um sistema bancário simples desenvolvido em Python, como exerc�
 ## 📌 Observações
 
 Este projeto foi desenvolvido como parte dos estudos práticos em Python no bootcamp de Back-End com foco em lógica, estruturas de decisão e manipulação de dados.
+
+---
 
 ## ✍️ Autor
 
